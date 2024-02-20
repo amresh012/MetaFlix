@@ -16,7 +16,7 @@ export const Row = ({ title, fetchURL }) => {
         <div className='relative flex items-center'>
             <div id={`slider`}>
                 {movies.map((item ,id )=>{
-                    <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer'>
+                  return  <div className='w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer'>
                         <img src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`} alt={item.title} />
                     </div>
                 })}
