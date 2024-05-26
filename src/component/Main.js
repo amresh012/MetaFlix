@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 import request from './Request';
+import { CiShare1 } from "react-icons/ci";
+import { FaPlusCircle } from "react-icons/fa";
+
 
 export const Main = () => {
     const[movies , setMovie] = useState([])
@@ -10,7 +13,7 @@ export const Main = () => {
 
     useEffect(() =>{
 
-        axios.get(request.requestPopular).then((response)=> (
+        axios.get(request.requestTrending).then((response)=> (
             setMovie(response.data.results)
         ))
     },[]);
@@ -23,23 +26,33 @@ export const Main = () => {
         }
     };
   return (
-    <div className='w-full h-[550px] text-white'>
-        <div className='w-full h-full'>
-            <div className='absolute w-full h-[550] bg-gradient-to-r from-white'></div>
-              <img className='w-full h-full object-cover mt-1' 
-              src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} 
-              alt={movie?.title}/>
-            </div>
-        <div className='absolute w-full top-[20%] p-4 md:p-8'>
-            <h1 className='text-3xl md:text-5xl ml-5'>{movie?.title}</h1>
-            <div className='m-4'>
-              <button className='border bg-red-600 text-white border-gray-400 py-3 px-5 m-1 rounded-md shadow-2xl'>Play</button>
-              <button className='border text-white border-gray-400 py-3 px-5 m-1 rounded-md shadow-2xl'>Watch Later</button>
-            </div>
-            <p className='text-red-100 text-sm ml-5'>Released :{movie?.release_date}</p>
-            <p className='w-full md:max--w[60%] lg:max-w-[50%] xl:max-w-[35%] text-gray-100 ml-5'>{tuncatestring(movie?.overview,150)}</p>
-
+      <div className="h-auto ">
+          <div className="h-screen w-screen">
+        <img
+          className="w-full h-full object-cover bg-center "
+          src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+          alt={movie?.title}
+        />
+      </div>
+      <div className="movie-info px-2 absolute top-[30%] flex flex-col items-start justify-around gap-2 lg:ml-5">
+        <span className='text-rose-100'>Trending Today</span>
+        <h1 className="text-4xl lg:text-6xl text-red-500 font-extrabold">{movie?.title}</h1>
+        <div className="space-x-2 flex text-white w-full">
+          <button className="bg-red-500 px-6 py-2 rounded-md flex items-center gap-1">
+            Play
+            <CiShare1/>
+          </button>
+          <button className="border px-6 py-2 flex items-center gap-1 rounded-md bg-white/20 backdrop-blur-md">
+            <FaPlusCircle/>
+            Add to favourites
+          </button>
         </div>
+        <p className="text-rose-50">Released :{movie?.release_date}</p>
+        <p className="lg:w-1/2 text-zinc-300 font-thin">{tuncatestring(movie?.overview, 150)}</p>
+      </div>
+      <div className=''>
+        
+      </div>
     </div>
-  )
+  );
 }

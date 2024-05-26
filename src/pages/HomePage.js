@@ -5,7 +5,7 @@ import request from '../component/Request';
 
 export const HomePage = () => {
   return (
-    <div>
+    <div className='overflow-clip'>
         <Main />
       <Row title="Upcoming" fetchURL={request.requestUpcoming} />
       <Row title="Popular" fetchURL={request.requestPopular} />
@@ -13,7 +13,6 @@ export const HomePage = () => {
       <Row title="Top Rated" fetchURL={request.requestTopRated} />
       <Row title="Horrer" fetchURL={request.requestHorror} />
       
-
 
 
 
